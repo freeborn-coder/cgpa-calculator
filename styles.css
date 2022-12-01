@@ -23,6 +23,7 @@ main {
     border-radius: 0 0 10px 10px;
     width:90vw;
     margin:0 auto;
+    min-height: 80vh;
 }
 
 h1 {
@@ -44,6 +45,7 @@ h1, main {
 
 h2 {
     margin-bottom: .3rem;
+    font-size: large;
 }
 
 .course {

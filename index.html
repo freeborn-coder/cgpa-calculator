@@ -25,8 +25,8 @@
                         <input type="text" class="course-name" placeholder="Course" title="course name or code">
                     </div>
                     <div class="credit-grade">
-                        <input type="number" class="credit-unit" placeholder="Credit Units" min="1" max="10" id="">
-                        <select class="grade" placeholder="Select grade">
+                        <input type="number" class="credit-unit" placeholder="Credit Units" min="1" max="10" onkeydown="calculateSemesterGPA(event)">
+                        <select class="grade" placeholder="Select grade" onchange="calculateSemesterGPA(event)">
                             <option value="">Grade</option>
                             <option value="5">A</option>
                             <option value="4">B</option>
@@ -55,7 +55,7 @@
         </a>
 
         <div class="calculate-section">
-            <button class="calculate-button">
+            <button class="calculate-button" onclick="calculateCumulativeGPA(event)">
                 Calculate GPA
             </button>        
         </div>
@@ -65,7 +65,7 @@
             <!-- results section -->
             <div class="result-row">
                 <span class="result-label">
-                    Units Total
+                    Total Units
                 </span>
                 <span class="result-label">
                     Your Cumulative GPA
@@ -84,47 +84,6 @@
 
 </body>
 
-<script>
-    const removeCourse = function (event) {
-        event.target.closest('.course').remove();
-    }
-    
-    const removeSemester = function (event) {
-        event.target.closest('.semester').remove();
-    }
-
-    const addCourse = function (event) {
-        const parent = event.target.parentElement;
-        const courseClone = parent.previousElementSibling.cloneNode(true);
-
-        makeVisible(courseClone.querySelector('.remove-course'));
-        clearFields(courseClone);
-
-        parent.insertAdjacentElement('beforebegin', courseClone);
-    }
-
-    const clearFields = function (node) {
-        const fields = node.querySelectorAll('input,select');
-        for (let i=0; i<fields.length; i++) {
-            fields[i].value = '';
-        }
-    }
-
-    const makeVisible = function (element) {
-        element.style.visibility = 'visible';
-    }
-
-    const addSemester = function (event) {
-        event.preventDefault();
-        
-        const semesterCount = document.querySelectorAll('.semester').length;
-        const semesterClone = event.target.previousElementSibling.cloneNode(true);
-
-        makeVisible(semesterClone.querySelector('.remove-semester'));
-
-        semesterClone.querySelector('h2').textContent = 'Semester ' + (semesterCount + 1);
-        event.target.insertAdjacentElement('beforebegin', semesterClone);   
-    }
-</script>
+<script src="script.js"></script>
 
 </html>

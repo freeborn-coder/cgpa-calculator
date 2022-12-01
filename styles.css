@@ -1,0 +1,228 @@
+:root {
+    --input-radius:4px;
+    --input-border: 1.5px solid #555;
+    --input-padding:5px;
+    --dark-theme:#F73C3D;
+    --light-theme:#E47979;
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: lightgray;
+}
+
+main {
+    padding:1rem;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    width:90vw;
+    margin:0 auto;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    background-color: black;
+    border-radius: 10px 10px 0 0;
+    margin-top: 2rem;
+    padding:0.5rem;
+    font-size: x-large;
+    width:90vw;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h1, main {
+    max-width: 30rem;
+}
+
+h2 {
+    margin-bottom: .3rem;
+}
+
+.course {
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.remove-course, .remove-semester {
+    margin-right:0.3rem;
+    border: 1px solid #333;
+    height: 20px;
+    width:20px; 
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 3.5px;
+}
+
+.course-details {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.course-details .course-name-container {
+    width:100%;
+    border: var(--input-border);
+    border-bottom: 0;
+    border-radius: var(--input-radius) var(--input-radius) 0 0;
+}
+
+.course-name {
+    width: 100%;
+    background-color: transparent;
+    border:none;
+}
+
+.course-details .credit-grade {
+    display: flex;
+    justify-content: space-evenly;
+    border: var(--input-border);
+    border-radius: 0 0 var(--input-radius) var(--input-radius);
+}
+
+.credit-unit {
+    border:none;
+    flex-grow: 1;
+    border-right:var(--input-border);
+    background-color: transparent;
+}
+
+.grade {
+    border:none;
+    flex-grow: 1;
+    background-color: transparent;
+}
+
+:is(input,select) {
+    padding:var(--input-padding);
+}
+
+:is(input,select):focus-visible {
+    outline: none;
+}
+
+a.add-semester {
+    text-decoration: none;
+    display: block;
+    padding-top:1rem;
+    font-weight: bold;
+    display: flex;
+    color:black;
+}
+
+span.plus {
+    margin-right:0.3rem;
+    border: 1.5px solid black;
+    text-align: center;
+    height: 18px;
+    width:18px; 
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    padding-bottom: 1px;
+}
+
+.semester-cta .add-course {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    color: var(--light-theme);
+    border:1px solid var(--light-theme);
+    transition: all 0.5s ease;
+}
+
+.semester-cta .add-course:hover {
+    background-color: var(--light-theme);
+    color:white;
+}
+
+.calculate-section {
+    text-align: center;
+    padding:2rem;
+    border-bottom: 1px solid lightgrey;
+}
+
+.calculate-button {
+    padding:.8rem 2rem;
+    background-color: rgb(126, 121, 121);
+    border:none;
+    border-radius:2rem;
+    color:white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor:pointer;
+    text-align: center;
+    align-self: center;
+    background-color: var(--dark-theme);
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.output-section {
+    padding-top:0.7rem;
+}
+
+.result-label {
+    font-size: large;
+}
+
+#total-qp {
+    font-size: large;
+    font-weight: 550;
+}
+
+#cgpa {
+    font-size: xxx-large;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:var(--dark-theme);
+}
+
+.semester-cta {
+    margin-top:0.5rem;
+    display:flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.semester-cta button {
+    display:flex;
+    align-items: center;
+    padding:0.3rem;
+    border-radius: 10px;
+    border:none;
+    margin-left: 2rem;
+}
+
+:is(.remove-course,.remove-semester):first-of-type {
+    visibility: hidden;
+}
+
+.semester {
+    margin-bottom: 1rem;
+}
+
+.semester-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

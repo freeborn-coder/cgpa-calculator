@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>GPA Calculator</h1>
+    </header>
+    <main>
+        <div class="semester">
+            <div class="semester-header">
+                <h2>Semester 1</h2>
+                <span title="remove semester" onclick="removeSemester(event)" class="remove-semester">x</span>
+            </div>
+
+            <!-- list courses with actions -->
+            <div class="course">
+                <div class="course-details">
+                    <div class="course-name-container">
+                        <input type="text" class="course-name" placeholder="Course" title="course name or code">
+                    </div>
+                    <div class="credit-grade">
+                        <input type="number" class="credit-unit" placeholder="Credit Units" min="1" max="10" id="">
+                        <select class="grade" placeholder="Select grade">
+                            <option value="">Grade</option>
+                            <option value="5">A</option>
+                            <option value="4">B</option>
+                            <option value="3">C</option>
+                            <option value="2">D</option>
+                            <option value="1">E</option>
+                            <option value="0">F</option>
+                        </select>
+                    </div>
+                </div>
+
+                <span title="remove course" onclick="removeCourse(event)" class="remove-course">x</span>
+            </div>
+
+            <div class="semester-cta">
+                <p class="semester-gpa">Semester GPA: 0.00</p>
+                <button class="add-course" onclick="addCourse(event)">
+                    + Add Course
+                </button>
+            </div>
+        </div>
+
+        <!-- add semester action -->
+        <a href="#" class="add-semester" title="Add semester" onclick="addSemester(event)">
+            <span class="plus">+</span> Add Semester
+        </a>
+
+        <div class="calculate-section">
+            <button class="calculate-button">
+                Calculate GPA
+            </button>        
+        </div>
+
+        <!-- Fixed output section -->
+        <div class="output-section">
+            <!-- results section -->
+            <div class="result-row">
+                <span class="result-label">
+                    Units Total
+                </span>
+                <span class="result-label">
+                    Your Cumulative GPA
+                </span>
+            </div>
+            <div class="result-row">
+                <span id="total-qp">
+                    0.00
+                </span>
+                <span id="cgpa">
+                    0.00
+                </span>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+<script>
+    const removeCourse = function (event) {
+        event.target.closest('.course').remove();
+    }
+    
+    const removeSemester = function (event) {
+        event.target.closest('.semester').remove();
+    }
+
+    const addCourse = function (event) {
+        const parent = event.target.parentElement;
+        const courseClone = parent.previousElementSibling.cloneNode(true);
+
+        makeVisible(courseClone.querySelector('.remove-course'));
+        clearFields(courseClone);
+
+        parent.insertAdjacentElement('beforebegin', courseClone);
+    }
+
+    const clearFields = function (node) {
+        const fields = node.querySelectorAll('input,select');
+        for (let i=0; i<fields.length; i++) {
+            fields[i].value = '';
+        }
+    }
+
+    const makeVisible = function (element) {
+        element.style.visibility = 'visible';
+    }
+
+    const addSemester = function (event) {
+        event.preventDefault();
+        
+        const semesterCount = document.querySelectorAll('.semester').length;
+        const semesterClone = event.target.previousElementSibling.cloneNode(true);
+
+        makeVisible(semesterClone.querySelector('.remove-semester'));
+
+        semesterClone.querySelector('h2').textContent = 'Semester ' + (semesterCount + 1);
+        event.target.insertAdjacentElement('beforebegin', semesterClone);   
+    }
+</script>
+
+</html>

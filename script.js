@@ -36,6 +36,13 @@ const addSemester = function (event) {
     makeVisible(semesterClone.querySelector('.remove-semester'));
 
     semesterClone.querySelector('h2').textContent = 'Semester ' + (semesterCount + 1);
+
+    clearFields(semesterClone.querySelector('.course'));
+    const extraCourses = semesterClone.querySelectorAll('.course:not(:nth-child(2))');
+    for (let i=0; i<extraCourses.length; i++) {
+        extraCourses[i].remove();
+    }
+    
     event.target.insertAdjacentElement('beforebegin', semesterClone);   
 }
 

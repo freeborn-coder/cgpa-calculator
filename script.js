@@ -55,7 +55,7 @@ const calculateSemesterGPA = function (event) {
 const calculateCumulativeGPA = function (event) {
     const courses = document.querySelectorAll('.course');
     document.querySelector('#cgpa').textContent = computeGPA(courses);
-    document.querySelector('#total-qp').textContent = computeTotalQualityPoints(courses);
+    document.querySelector('#total-units').textContent = computeTotalUnits(courses);
 }
 
 const computeGPA = function (courses) {
@@ -79,19 +79,16 @@ const computeGPA = function (courses) {
     return isNaN(gpa) ? '0.00' : gpa;
 }
 
-const computeTotalQualityPoints = function (courses) {
-    let totalQualityPoints = 0;
+const computeTotalUnits = function (courses) {
+    let totalUnits = 0;
 
     for (i=0; i<courses.length; i++) {
         const creditUnit = courses[i].querySelector('.credit-unit').value;
-        const grade = courses[i].querySelector('.grade').value;
-        const qualityPoint = Number(grade) * Number(creditUnit);
-        
-        if (isNaN(qualityPoint)) {
+        if (isNaN(creditUnit)) {
             return '0.00';
         }
 
-        totalQualityPoints += qualityPoint;
+        totalUnits += Number(creditUnit);
     }
-    return totalQualityPoints.toFixed(2);
+    return totalUnits.toFixed(2);
 }
